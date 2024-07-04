@@ -1,5 +1,6 @@
 import express from 'express';
-import { orderRoutes, productRoutes } from '../modules/Product/product.router';
+import { productRoutes } from '../modules/Product/product.router';
+import { orderRoutes } from '../modules/Order/order.router';
 
 const router = express.Router();
 const moduleRoutes = [

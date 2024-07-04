@@ -17,10 +17,10 @@ const getAllProductsFromDB = async (params: Record<string, unknown>) => {
       ],
     });
     return result;
-  };
+  }
 
   const result = await ProductModel.find();
-  return result
+  return result;
 };
 
 const getSingleProductFromDB = async (id: string) => {
