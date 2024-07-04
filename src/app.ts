@@ -9,6 +9,6 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hello From E-Commerce Server');
 });
-app.use('/api/products', productRoutes)
+app.use('/api/products', productRoutes);
 
 export default app;
