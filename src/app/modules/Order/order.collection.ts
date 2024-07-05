@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { orderServices } from './order.service';
+import catchAsync from '../../utils/catchAsync';
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = catchAsync(async (req: Request, res: Response) => {
   const result: any = await orderServices.createOrderInDB(req.body);
 
   res.status(200).json({
@@ -10,7 +11,7 @@ const createOrder = async (req: Request, res: Response) => {
     message: result?.message || 'Order created successfully!',
     data: result,
   });
-};
+});
 
 const getAllOrders = async (req: Request, res: Response) => {
   const result = await orderServices.getAllOrdersFromDB();
