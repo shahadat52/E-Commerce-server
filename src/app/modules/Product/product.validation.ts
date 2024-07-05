@@ -43,16 +43,8 @@ const createProductValidationSchema = z.object({
 });
 
 const updateVariantsZodSchema = z.object({
-  type: z
-    .string({
-      required_error: 'Variants Type is required',
-    })
-    .optional(),
-  value: z
-    .string({
-      required_error: 'Variants value is required',
-    })
-    .optional(),
+  type: z.string().optional(),
+  value: z.string().optional(),
 });
 
 const updateInventoryZodSchema = z.object({

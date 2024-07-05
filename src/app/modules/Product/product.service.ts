@@ -24,13 +24,18 @@ const getAllProductsFromDB = async (params: Record<string, unknown>) => {
 };
 
 const getSingleProductFromDB = async (id: string) => {
-  const result = await ProductModel.find({ id });
+  const result = await ProductModel.findById(id);
 
   return result;
 };
 
 const updateSingleProductInDB = async (data: Partial<TProduct>, id: string) => {
-  // console.log({ data, id });
+
+  const isExistsProduct = await ProductModel.findById(id);
+  if (!isExistsProduct) {
+    throw Error("Product not available")
+  }
+
   const result = await ProductModel.findByIdAndUpdate(
     id,
     { $set: data },
