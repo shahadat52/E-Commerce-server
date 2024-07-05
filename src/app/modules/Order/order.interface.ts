@@ -1,4 +1,5 @@
-import { Types } from 'mongoose';
+/* eslint-disable no-unused-vars */
+import { Model, Types } from 'mongoose';
 
 export type TOrder = {
   email: string;
@@ -6,3 +7,7 @@ export type TOrder = {
   price: number;
   quantity: number;
 };
+
+export interface Order extends Model<TOrder> {
+  isProductQuantityExists(id: string): Promise<TOrder | null>;
+}

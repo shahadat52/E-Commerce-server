@@ -1,7 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
-import { TOrder } from './order.interface';
+import mongoose, { Schema, Types } from 'mongoose';
+import { Order, TOrder } from './order.interface';
+import { ProductModel } from '../Product/product.model';
 
-export const orderSchema = new Schema<TOrder>(
+export const orderSchema = new Schema<TOrder, Order>(
   {
     email: {
       type: String,
@@ -24,4 +25,14 @@ export const orderSchema = new Schema<TOrder>(
   { timestamps: true },
 );
 
-export const OrderModel = mongoose.model('order', orderSchema);
+// orderSchema.pre('save', async function (next) {
+//     const id = this.productId
+// })
+
+orderSchema.statics.isProductQuantityExists = async function (
+  id: Types.ObjectId,
+) {
+  return await ProductModel.findById(id);
+};
+
+export const OrderModel = mongoose.model<TOrder, Order>('order', orderSchema);
