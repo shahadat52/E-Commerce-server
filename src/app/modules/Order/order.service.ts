@@ -44,6 +44,9 @@ const getOrderFromDB = async (param: Record<string, unknown>) => {
   }
 
   const result = await OrderModel.find({ email: param.email });
+  if (!result.length) {
+    throw Error('Order not found');
+  }
   return result;
 };
 
