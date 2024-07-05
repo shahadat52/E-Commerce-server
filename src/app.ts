@@ -12,6 +12,6 @@ app.get('/', (req, res) => {
 });
 app.use('/api', router);
 
-app.use(globalErrorHandler)
+app.use(globalErrorHandler);
 
 export default app;

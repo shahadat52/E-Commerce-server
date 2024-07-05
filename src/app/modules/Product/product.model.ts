@@ -19,7 +19,7 @@ const inventorySchema = new Schema<TInventory>({
   },
   inStock: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 });
 
@@ -48,10 +48,12 @@ export const productSchema = new Schema<TProduct>(
     variants: {
       type: [variantSchema],
       required: [true, 'Product "Variant" is Required'],
+      _id: false,
     },
     inventory: {
       type: inventorySchema,
       required: [true, 'Product "Inventory" is Required'],
+      _id: false,
     },
   },
   { timestamps: true },
